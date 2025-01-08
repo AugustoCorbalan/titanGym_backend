@@ -1,8 +1,11 @@
 import app from './app.js';
 import sequelize from '../database/db.js';
-import { PORT } from "./config.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function main (){
+    const {PORT} = process.env;
     try {
         await sequelize.sync({force: true});
         app.listen(PORT);
