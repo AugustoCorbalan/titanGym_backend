@@ -13,7 +13,7 @@ const Membership = sequelize.define('Membership', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'User',
+            model: 'Users',
             key: 'googleId'
         }
     },
@@ -21,7 +21,7 @@ const Membership = sequelize.define('Membership', {
         type: DataTypes.STRING,
         allowNull: false,
         references:{
-            model: 'Activity',
+            model: 'Activities',
             key: 'name'
         }
     },

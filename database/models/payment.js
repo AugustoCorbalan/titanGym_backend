@@ -13,7 +13,7 @@ const Payment = sequelize.define('Payment', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'User',
+            model: 'Users',
             key: 'googleId'
         }
     },
@@ -21,7 +21,7 @@ const Payment = sequelize.define('Payment', {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: 'Debt',
+            model: 'Debts',
             key: 'id'
         },
         onDelete: 'SET NULL'

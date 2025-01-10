@@ -14,27 +14,27 @@ User.belongsToMany(Activity, { through: 'UserActivities' });
 Activity.belongsToMany(User, { through: 'UserActivities' });
 
 // Usuarios - Membresías
-User.hasMany(Membership, {foreignKey: 'googleId'});
-Membership.belongsTo(User, {foreignKey: 'googleId'});
+User.hasMany(Membership, {foreignKey: 'userId'});
+Membership.belongsTo(User, {foreignKey: 'userId'});
 
-// Actividad - Membresía
-Activity.hasMany(Membership, {foreignKey: 'name'});
-Membership.belongsTo(Activity, { foreignKey: 'name' });
+// // Actividad - Membresía
+Activity.hasMany(Membership, {foreignKey: 'activityId'});
+Membership.belongsTo(Activity, { foreignKey: 'activityId' });
 
-// Usuario - Deuda
-User.hasMany(Debt, { foreignKey: 'googleId' }); // Un usuario puede tener varias deudas
-Debt.belongsTo(User, { foreignKey: 'googleId' });
+// // Usuario - Deuda
+User.hasMany(Debt, { foreignKey: 'userId' }); // Un usuario puede tener varias deudas
+Debt.belongsTo(User, { foreignKey: 'userId' });
 
-// Membresía - Deuda
-Membership.hasMany(Debt, { foreignKey: 'id' }); // Una membresía puede generar deudas
-Debt.belongsTo(Membership, { foreignKey: 'id' }); 
+// // Membresía - Deuda
+Membership.hasMany(Debt, { foreignKey: 'membershipId' }); // Una membresía puede generar deudas
+Debt.belongsTo(Membership, { foreignKey: 'membershipId' }); 
 
-// Usuario - Pago
-User.hasMany(Payment, { foreignKey: 'googleId' }); // Un usuario puede realizar múltiples pagos
-Payment.belongsTo(User, { foreignKey: 'googleId' });
+// // Usuario - Pago
+User.hasMany(Payment, { foreignKey: 'userId' }); // Un usuario puede realizar múltiples pagos
+Payment.belongsTo(User, { foreignKey: 'userId' });
 
-// Deuda - Pago
-Debt.hasMany(Payment, { foreignKey: 'id' }); // Una deuda puede estar cubierta por múltiples pagos
-Payment.belongsTo(Debt, { foreignKey: 'id' });
+// // Deuda - Pago
+Debt.hasMany(Payment, { foreignKey: 'debtId' }); // Una deuda puede estar cubierta por múltiples pagos
+Payment.belongsTo(Debt, { foreignKey: 'debtId' });
 
-export { sequelize, User, Activity, Membership, Payment};
+export { sequelize, User, Activity, Membership, Payment, Debt};

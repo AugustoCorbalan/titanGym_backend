@@ -13,15 +13,15 @@ const Debt = sequelize.define('Debt', {
         type: DataTypes.STRING,
         allowNull: false,
         references: {
-            model: 'User',
+            model: 'Users',
             key: 'googleId'
         }
     },
-    activityId:{
+    membershipId:{
         type: DataTypes.STRING,
         allowNull: true,
         references:{
-            model: 'Activity',
+            model: 'Activities',
             key: 'name'
         }
     },
