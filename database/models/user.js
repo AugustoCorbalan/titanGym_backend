@@ -1,7 +1,7 @@
 import sequelize from '../db.js';
 import { DataTypes } from 'sequelize';
 
-const User = sequelize.define("user",{
+const User = sequelize.define("User",{
     
     googleId:{
         type: DataTypes.STRING, 

@@ -1,4 +1,4 @@
-import User from '../../../../database/models/user.js';
+import {User} from '../../../../database/models/index.js';
 
 const postUser = async (req, res)=>{
     try {
