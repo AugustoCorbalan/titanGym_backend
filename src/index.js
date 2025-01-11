@@ -7,7 +7,7 @@ dotenv.config();
 async function main (){
     const {PORT} = process.env;
     try {
-        await sequelize.sync({force: true});
+        await sequelize.sync({force: false});
         app.listen(PORT);
         console.log(`Server is listening on PORT: ${PORT}`)
     } catch (error) {
