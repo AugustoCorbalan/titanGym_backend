@@ -18,17 +18,25 @@ const Membership = sequelize.define('Membership', {
         }
     },
     activityId:{
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         references:{
             model: 'Activities',
-            key: 'name'
+            key: 'id'
         }
     },
     status: {
         type: DataTypes.ENUM('activa', 'inactiva'),
         allowNull: false,
         defaultValue: 'activa'
+    },
+    payDay:{
+        type: DataTypes.INTEGER,
+        validate:{
+            min: 1,
+            max: 30
+        },
+        allowNull: false,
     },
     startDate:{
         type: DataTypes.DATE,

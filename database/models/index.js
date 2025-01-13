@@ -26,8 +26,8 @@ User.hasMany(Debt, { foreignKey: 'userId' }); // Un usuario puede tener varias d
 Debt.belongsTo(User, { foreignKey: 'userId' });
 
 // // Membresía - Deuda
-Membership.hasMany(Debt, { foreignKey: 'membershipId' }); // Una membresía puede generar deudas
-Debt.belongsTo(Membership, { foreignKey: 'membershipId' }); 
+Membership.belongsToMany(Debt, { through: 'DebtMemberships' }); // Una membresía puede tener varias deudas, además que una deuda puede corresponder a varias membresías.
+Debt.belongsToMany(Membership, { through: 'DebtMemberships' }); 
 
 // // Usuario - Pago
 User.hasMany(Payment, { foreignKey: 'userId' }); // Un usuario puede realizar múltiples pagos

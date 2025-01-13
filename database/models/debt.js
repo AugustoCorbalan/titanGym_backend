@@ -1,5 +1,5 @@
 import sequelize from "../db.js";
-import { DataTypes } from 'sequelize';
+import { DataTypes, INTEGER } from 'sequelize';
 
 //Deudas de los clientes
 const Debt = sequelize.define('Debt', {
@@ -17,20 +17,12 @@ const Debt = sequelize.define('Debt', {
             key: 'googleId'
         }
     },
-    membershipId:{
-        type: DataTypes.STRING,
-        allowNull: true,
-        references:{
-            model: 'Activities',
-            key: 'name'
-        }
-    },
     amount:{
         type: DataTypes.DECIMAL(10, 2), // Por ejemplo, un costo mensual como 50.00
         allowNull: false
     },
     status:{
-        type: DataTypes.ENUM('Pendiente', 'Pagada'),
+        type: DataTypes.ENUM('Pendiente', 'Pagada', 'Vencida'),
         allowNull: false,
         defaultValue: 'Pendiente'
     },
