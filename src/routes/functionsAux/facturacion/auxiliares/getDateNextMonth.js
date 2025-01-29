@@ -1,6 +1,6 @@
 const getDateNextMonth = (accountDate)=>{
     
-        const date = new Date(accountDate);
+        const date = new Date(accountDate); //Fecha de hoy;
         
         // Aumentar el mes en 1
         const nextMounth = date.getMonth() + 1;

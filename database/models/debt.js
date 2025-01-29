@@ -1,5 +1,6 @@
 import sequelize from "../db.js";
 import { DataTypes, INTEGER } from 'sequelize';
+import Membership from "./membership.js";
 
 //Deudas de los clientes
 const Debt = sequelize.define('Debt', {
