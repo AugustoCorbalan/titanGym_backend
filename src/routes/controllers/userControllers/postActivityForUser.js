@@ -38,15 +38,10 @@ const postActivityForUser = async (req, res)=>{
           startDate: today
         }, {transaction: t});
         //Creo la primera deuda (Factura);
-        const debtDate = await debtCalculator(userId); //Calcula el monto a pagar, día de pago;
+        const debtDate = await debtCalculator(userId, t); //Calcula el monto a pagar, día de pago;
         if (!debtDate) throw new Error("Error al calcular la deuda.");
-        console.log(debtDate)
-        await Debt.create({
-          userId,
-          amount : debtDate.amount,
-          dueDate : debtDate.dueDate,
-          description : debtDate.description
-        }, {transaction: t})
+        console.log("debtDate", debtDate)
+        await Debt.create(debtDate, {transaction: t});
         await t.commit(); // Confirmar la transacción
         res.status(200).send("Exito");
       } catch (error) {
