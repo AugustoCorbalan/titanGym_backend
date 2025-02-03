@@ -46,6 +46,10 @@ const Debt = sequelize.define('Debt', {
     products:{
         type: DataTypes.ARRAY(STRING),
         allowNull: false
+    },
+    description: { //Se utiliza para colocar comentarios, como por ejemplo: ("Se realizo un descuento del 50%")
+        type: DataTypes.STRING,
+        allowNull: true
     }
 });
 
