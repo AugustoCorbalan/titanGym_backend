@@ -27,19 +27,19 @@ const Debt = sequelize.define('Debt', {
         allowNull: false,
         defaultValue: 'Pendiente'
     },
-    dueDate: {
+    dueDate: { //Fecha de vencimiento de la deuda
         type: DataTypes.DATE,
         allowNull: false
     },
-    issueDate: {
+    issueDate: {   //Fecha de emisión de la deuda
         type: DataTypes.DATE,
         allowNull: false
     },
-    startDate: {
+    startDate: { //Fecha de inicio del periodo facturado
         type: DataTypes.DATE,
         allowNull: false
     },
-    endDate: {
+    endDate: { //Fecha de fin del periodo facturado
         type: DataTypes.DATE,
         allowNull: false
     },
