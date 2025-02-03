@@ -1,5 +1,5 @@
 import sequelize from "../db.js";
-import { DataTypes, INTEGER } from 'sequelize';
+import { DataTypes, INTEGER, STRING } from 'sequelize';
 import Membership from "./membership.js";
 
 //Deudas de los clientes
@@ -31,9 +31,21 @@ const Debt = sequelize.define('Debt', {
         type: DataTypes.DATE,
         allowNull: false
     },
-    description:{
-        type: DataTypes.STRING,
-        allowNull: true
+    issueDate: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    startDate: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    endDate: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    products:{
+        type: DataTypes.ARRAY(STRING),
+        allowNull: false
     }
 });
 
