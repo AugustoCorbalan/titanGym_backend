@@ -12,13 +12,31 @@ const Product = sequelize.define('Product', {
     type: DataTypes.ENUM('Remera'),
     allowNull: false,
   },
-  articleId: {
-    type: DataTypes.INTEGER,
+  name: {
+    type: DataTypes.STRING,
     allowNull: false,
-    references: {
-        model: 'Debts',
-        key: 'id'
-    },
+  },
+  cost: {
+    type: DataTypes.DECIMAL(10, 2), // Por ejemplo, un costo mensual como 50.00
+    allowNull: false
+  },
+  fabric: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  age: {
+    type: DataTypes.ENUM('Niño', 'Adulto', 'Todas'),
+    allowNull: false,
+    defaultValue: 'Todas'
+  },
+  gender: {
+    type: DataTypes.ENUM('Hombre', 'Mujer', 'Unisex'),
+    allowNull: false,
+    defaultValue: 'Unisex'
+  },
+  sizes: {
+    type: DataTypes.ARRAY(ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', 'Unico')),
+    allowNull: false
   }
    
 });
