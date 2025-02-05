@@ -1,9 +1,8 @@
-import jwt from 'jsonwebtoken';
 import {Debt} from '../../../../database/models/index.js';
 
 const getDebtsOfUser = async (req, res)=>{
-    const {userId} = req.params;
-    const tokenUserId = req.user;
+    const {userId} = req.query;
+    const tokenUserId = req.user.id;
     try {
         //Verifico que el userId que viene por el token sea el mismo que el que viene por params (Medida de seguridad)
         if(userId != tokenUserId){
