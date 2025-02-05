@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -14,6 +15,7 @@ export const authenticateToken = (req, res, next) => {
 
     jwt.verify(tokenWithoutBearer, JWT_SECRET, (err, user) => {
         if (err) {
+            console.log('error token no valido')
             return res.status(403).json({ error: 'Token no válido' });
         }
         // Guardamos el user en la solicitud para usarlo después
