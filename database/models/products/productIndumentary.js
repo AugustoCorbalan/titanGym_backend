@@ -1,16 +1,12 @@
-import sequelize from "../db.js";
+import sequelize from "../../db.js";
 import { DataTypes } from 'sequelize';
 
-const Product = sequelize.define('Product', {
+const ProductIndumentary = sequelize.define('ProductIndumentary', {
   id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     autoIncrement: true,
     primaryKey: true
-  },
-  type: {
-    type: DataTypes.ENUM('Remera'),
-    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
@@ -37,8 +33,10 @@ const Product = sequelize.define('Product', {
   sizes: {
     type: DataTypes.ARRAY(ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', 'Unico')),
     allowNull: false
-  }
-   
+  }  
+}, {
+    tableName: 'productsIndumentaries',
+    timestamps: false  //Evita que cree automaticamente las propiedas de fecha de creación de la tabla
 });
 
-export default Product;
+export default ProductIndumentary;
