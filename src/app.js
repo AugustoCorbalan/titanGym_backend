@@ -2,6 +2,9 @@ import express from 'express';
 import routes from './routes/index.js';
 import passport from './passport.js';
 import cors from 'cors';
+import path from 'path';
+import multer from 'multer';
+import { fileURLToPath } from 'url';
 
 const app = express();
 
@@ -15,6 +18,12 @@ const corsOptions = {
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
     credentials: true, // Permitir cookies
   };
+//Creo manualmente __filename y __dirname ya que en proyectos {type: module} no funcionan por defecto. 
+
+// Obtener __dirname manualmente
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 // Configuración multer:
 const storage = multer.diskStorage({
