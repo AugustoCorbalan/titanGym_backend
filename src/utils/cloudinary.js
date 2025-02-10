@@ -1,6 +1,7 @@
-const { v2: cloudinary } = require('cloudinary');
+import { v2 as cloudinary } from 'cloudinary';
+import dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
 const { CLOUD_NAME, API_KEY, API_SECRET } = process.env;
 
@@ -13,7 +14,7 @@ cloudinary.config({
 
 //Función para la carga de imágenes:
 
-const uploadImage = async (filepath) => {
+export const uploadImage = async (filepath) => {
 return await cloudinary.uploader.upload(
         filepath,
         { folder: "e-commerce"}, //Esto le indica a cloudinary que guarde las imagenes dentro de una carpeta llamada "e-commerce"
@@ -24,11 +25,7 @@ return await cloudinary.uploader.upload(
 
 //Función para eliminar imágenes en la nube:
 
-const deleteImage = async (public_id) => {
+export const deleteImage = async (public_id) => {
     return await cloudinary.uploader.destroy(public_id);
 }
 
-module.exports = {
-    uploadImage,
-    deleteImage
-}

@@ -14,4 +14,4 @@ router.post('/', (req, res)=> postUser(req, res));
 router.post('/postActivityForUser', (req, res)=> postActivityForUser(req, res));
 router.put('/setUserAsAdmin', (req, res)=> setUserAsAdmin(req, res));
 
-export default router; 
+export default router;

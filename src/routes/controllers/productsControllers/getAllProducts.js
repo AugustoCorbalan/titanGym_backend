@@ -4,12 +4,14 @@ const getAllProducts = async (req, res)=>{
     try {
         const resultIndumentary = await ProductIndumentary.findAll({
             include: {
-                model: IndumentaryType
+                model: IndumentaryType,
+                as: 'productType'
             }
         });
         const resultNutrifit = await ProductNutrifit.findAll({
             include: {
-                model: NutrifitType
+                model: NutrifitType,
+                as: 'productType'
             }
         });
         const result = resultIndumentary.concat(resultNutrifit);

@@ -4,7 +4,8 @@ const getAllIndumentary = async (req, res)=>{
     try {
         const result = await ProductIndumentary.findAll({
             include: {
-                model: IndumentaryType
+                model: IndumentaryType,
+                as: 'productType'
             }
         });
         res.status(200).send(result);

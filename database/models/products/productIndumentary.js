@@ -31,9 +31,13 @@ const ProductIndumentary = sequelize.define('ProductIndumentary', {
     defaultValue: 'Unisex'
   },
   sizes: {
-    type: DataTypes.ARRAY(ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', 'Unico')),
+    type: DataTypes.ARRAY(DataTypes.ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', 'Unico')),
     allowNull: false
-  }  
+  },
+  images: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true
+  }
 }, {
     tableName: 'productsIndumentaries',
     timestamps: false  //Evita que cree automaticamente las propiedas de fecha de creación de la tabla

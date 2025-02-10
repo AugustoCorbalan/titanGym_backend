@@ -4,7 +4,8 @@ const getAllNutrifit = async (req, res)=>{
     try {
         const result = await ProductNutrifit.findAll({
             include: {
-                model: NutrifitType
+                model: NutrifitType,
+                as: 'productType'
             }
         });
         res.status(200).send(result);
