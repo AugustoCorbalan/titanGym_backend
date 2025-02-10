@@ -3,6 +3,7 @@ import { loadImage } from '../../functionsAux/loadImage.js';
 
 const postIndumentary = async (req, res)=>{
     const t = await sequelize.transaction(); // Iniciar una transacción
+    console.log("req", req);
     try {
         const data = JSON.parse(req.body.data);
         let type;
@@ -11,12 +12,11 @@ const postIndumentary = async (req, res)=>{
             transaction: t
         })
         if(!type){ // Si no existe instancia con name = data.type en la tabla IndumentaryType, entonces la creo
-            type = IndumentaryType.create( { name: data.type }, {
+            type = await IndumentaryType.create( { name: data.type }, {
                 transaction: t
             })
         }
         const newData = await loadImage(req.files, data); //Cargo imagenes a Cloudinary
-        console.log("newData", newData);
         const newProduct = await ProductIndumentary.create(newData, {
             transaction: t
         }); // Instancio el producto en la bd;

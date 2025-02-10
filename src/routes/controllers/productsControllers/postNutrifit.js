@@ -11,7 +11,7 @@ const postNutrifit = async (req, res)=>{
             transaction: t
         })
         if(!type){ // Si no existe instancia con name = data.type en la tabla IndumentaryType, entonces la creo
-            type = NutrifitType.create( { name: data.type }, {
+            type = await NutrifitType.create( { name: data.type }, {
                 transaction: t
             })
         }
