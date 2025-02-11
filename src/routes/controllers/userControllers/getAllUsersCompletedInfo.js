@@ -16,16 +16,17 @@ const getUser = async (req, res)=>{
                         model: Membership, // Incluye las membresías relacionadas
                     },
                     {
-                        model: Debt, // Incluye las deudas relacionadas
+                        model: Debt,
+                        separate: true, // Permite ordenar y limitar por usuario
+                        order: [['issueDate', 'DESC']], // Ordena deudas por fecha descendente
+                        limit: 2 // Solo trae las últimas 2 deudas de cada usuario.
                     }
-            ]
+                ]
             })
-            
             res.status(200).send(result);
         }else{
             throw new Error("El usario solicitante no tiene los permisos necesarios");
         }
-        res.status(200).send(result);
     } catch (error) {
         res.status(400).send(error.message);
     }
