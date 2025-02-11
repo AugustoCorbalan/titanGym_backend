@@ -1,4 +1,4 @@
-import { User } from "../../../database/models/index";
+import { User } from "../../../database/models/index.js";
 
 export const verifyUserIsAdmin = async (userId)=>{
     try {
