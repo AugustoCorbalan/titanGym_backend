@@ -6,6 +6,7 @@ import membershipRouth from './membership.routes.js';
 import debtRouth from './debt.routes.js';
 import productsRouth from './products.routes.js';
 import buyRouth from './buys.routes.js';
+import paymentRouth from './payment.routes.js';
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use('/membership', membershipRouth);
 router.use('/debts', debtRouth);
 router.use('/products', productsRouth);
 router.use('/buys', buyRouth);
+router.use('/payments', paymentRouth);
 
 export default router;
