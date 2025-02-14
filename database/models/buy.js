@@ -17,6 +17,18 @@ const Buy = sequelize.define('Buy', {
         type: DataTypes.DATEONLY,
         allowNull: false
     },
+    cant: { 
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    userId: { 
+        type: DataTypes.STRING, 
+        allowNull: true, 
+        references: { 
+            model: 'Users', 
+            key: 'googleId' 
+        } 
+    }
 });
 
 export default Buy;

@@ -1,9 +1,8 @@
 import { sequelize, IndumentaryType, ProductIndumentary } from '../../../../database/models/index.js';
-import { loadImage } from '../../functionsAux/loadImage.js';
+import { loadImage } from '../../functionsAux/cloudinaryFunctions.js';
 
 const postIndumentary = async (req, res)=>{
     const t = await sequelize.transaction(); // Iniciar una transacción
-    console.log("req", req);
     try {
         const data = JSON.parse(req.body.data);
         let type;
@@ -16,7 +15,8 @@ const postIndumentary = async (req, res)=>{
                 transaction: t
             })
         }
-        const newData = await loadImage(req.files, data); //Cargo imagenes a Cloudinary
+        const images = await loadImage(req.files); //Cargo imagenes a Cloudinary
+        const newData = {...data, images: images};
         const newProduct = await ProductIndumentary.create(newData, {
             transaction: t
         }); // Instancio el producto en la bd;

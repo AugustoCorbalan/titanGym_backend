@@ -1,5 +1,5 @@
 import { ProductNutrifit, NutrifitType } from '../../../../database/models/index.js';
-import { loadImage } from '../../functionsAux/loadImage.js';
+import { loadImage } from '../../functionsAux/cloudinaryFunctions.js';
 
 const postNutrifit = async (req, res)=>{
     const t = await sequelize.transaction(); // Iniciar una transacción

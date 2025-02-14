@@ -29,3 +29,10 @@ export const deleteImage = async (public_id) => {
     return await cloudinary.uploader.destroy(public_id);
 }
 
+//Obtener publicID de una imagen a partir de su URL:
+
+export const getPublicId = async (url) => {
+    const partes = url.split("/");
+    const id = `${partes[partes.length - 2]}/${partes[partes.length - 1].split(".")[0]}`;
+    return id;
+  }
