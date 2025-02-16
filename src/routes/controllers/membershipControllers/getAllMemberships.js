@@ -2,10 +2,10 @@ import {Membership} from '../../../../database/models/index.js';
 import { verifyUserIsAdmin } from '../../functionsAux/verifyUserIsAdmin.js';
 
 const getAllMemberships = async (req, res)=>{
-    const userId = req.user;
+    const user = req.user;
     try {
         //Verifico si el usuario es administrador;
-        const userIsAdmin = await verifyUserIsAdmin(userId);
+        const userIsAdmin = await verifyUserIsAdmin(user);
         if(userIsAdmin){
             const result = await Membership.findAll();
             res.status(200).send(result);
