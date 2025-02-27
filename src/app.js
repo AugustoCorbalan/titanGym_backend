@@ -6,7 +6,8 @@ import path from 'path';
 import multer from 'multer';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from 'uuid';
-
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 
 //Configuración de Passport
@@ -14,7 +15,7 @@ app.use(passport.initialize());
 
 //Configuracion de CORS
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.BASE_URL_FRONTEND, // Origen de la petición
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
     credentials: true, // Permitir cookies

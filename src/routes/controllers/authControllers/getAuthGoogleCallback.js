@@ -11,7 +11,13 @@ const getAuthGoogleCallback = async (req, res)=>{
       process.env.JWT_SECRET,
       { expiresIn: '1h'}
     );
-    res.redirect(`http://localhost:3000/auth/success?token=${token}`);
+    // // Redirección con token en cookie segura
+    // res.cookie("token", token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === "production",
+    //   sameSite: "Strict",
+    // });
+    res.redirect(`${process.env.BASE_URL_FRONTEND}/auth/success?token=${token}`);
   } catch (error) {
     res.status(500).json({ error: 'Authentication failed'});
   }
