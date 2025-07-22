@@ -24,7 +24,7 @@ const postNutrifit = async (req, res)=>{
             transaction: t
         });
         await t.commit(); // Confirmar la transacción
-        res.send("Producto de Indumentaria agregado con éxito");
+        res.send("Producto de Nutrifit agregado con éxito");
     } catch (error) {
         await t.rollback(); // Deshacer cambios si hubo un error
         res.status(400).send(error.message);

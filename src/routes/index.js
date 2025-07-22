@@ -7,6 +7,7 @@ import debtRouth from './debt.routes.js';
 import productsRouth from './products.routes.js';
 import buyRouth from './buys.routes.js';
 import paymentRouth from './payment.routes.js';
+import mercadopagoRouth from './mercadopago.routes.js';
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.use('/debts', debtRouth);
 router.use('/products', productsRouth);
 router.use('/buys', buyRouth);
 router.use('/payments', paymentRouth);
+router.use('/mercadopago', mercadopagoRouth);
 
 export default router;

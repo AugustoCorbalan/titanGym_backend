@@ -1,7 +1,7 @@
 import sequelize from "../db.js";
 import { DataTypes} from 'sequelize';
 
-//Deudas de los clientes
+//Compras de los clientes
 const Buy = sequelize.define('Buy', {
     id:{
         type: DataTypes.INTEGER,

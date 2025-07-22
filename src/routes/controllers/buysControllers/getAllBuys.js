@@ -16,7 +16,8 @@ const getAllBuys = async (req, res)=>{
                         model: ProductNutrifit,
                         attributes: ["name"]
                     }
-                ]
+                ],
+                order: [['issueDate', 'DESC']]
             });
             res.status(200).json(result);
         }else{

@@ -7,6 +7,8 @@ import multer from 'multer';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from 'uuid';
 import dotenv from 'dotenv';
+import mercadopago from 'mercadopago';
+
 dotenv.config();
 const app = express();
 

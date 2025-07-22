@@ -36,7 +36,7 @@ const Payment = sequelize.define('Payment', {
         defaultValue: DataTypes.NOW
     },
     method: {
-        type: DataTypes.ENUM('efectivo', 'transferencia', 'tarjeta'),
+        type: DataTypes.ENUM('efectivo', 'transferencia', 'tarjeta', 'mercadoPago'),
         allowNull: false
     }
 });
