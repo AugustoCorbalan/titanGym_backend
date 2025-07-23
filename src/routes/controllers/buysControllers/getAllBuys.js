@@ -17,7 +17,7 @@ const getAllBuys = async (req, res)=>{
                         attributes: ["name"]
                     }
                 ],
-                order: [['issueDate', 'DESC']]
+                order: [['buyDate', 'DESC']]
             });
             res.status(200).json(result);
         }else{
@@ -25,6 +25,7 @@ const getAllBuys = async (req, res)=>{
         }
     } catch (error) {
         res.status(400).send(error.message);
+        console.log(error);
     }
 };
 

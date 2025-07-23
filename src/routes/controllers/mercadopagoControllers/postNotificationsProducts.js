@@ -1,7 +1,7 @@
 import { Payment } from "mercadopago";
 import mercadopago from "../../../utils/mercadopagoConfig.js";
 import { verifyNotification } from "./functions/verifyNotification.js";
-import { handlerDbBuyIndumentary } from "./functions/handlersDb.js";
+import { handlerDbBuyIndumentary, handlerDbBuyNutrifit } from "./functions/handlersDb.js";
 
 export const postNotificationsProducts = async (req, res) => {
     
@@ -15,6 +15,8 @@ export const postNotificationsProducts = async (req, res) => {
                 if(payment.status === "approved"){ // Si se aprueba, modificamos la bd
                     if(metadata.type_product == 'Indumentary'){
                         handlerDbBuyIndumentary(metadata, amount);
+                    }else if(metadata.type_product == 'Nutrifit'){
+                        handlerDbBuyNutrifit(metadata, amount);
                     }
                 }
                 res.status(200).send("Exito");

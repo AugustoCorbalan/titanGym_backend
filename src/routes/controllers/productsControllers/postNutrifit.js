@@ -1,10 +1,12 @@
-import { ProductNutrifit, NutrifitType } from '../../../../database/models/index.js';
+import { sequelize, ProductNutrifit, NutrifitType } from '../../../../database/models/index.js';
 import { loadImage } from '../../functionsAux/cloudinaryFunctions.js';
 
 const postNutrifit = async (req, res)=>{
+    console.log("Ingresó...")
     const t = await sequelize.transaction(); // Iniciar una transacción
     try {
         const data = JSON.parse(req.body.data);
+        console.log(data);
         let type;
         type = await NutrifitType.findOne({
             where: { name : data.type},
@@ -15,7 +17,9 @@ const postNutrifit = async (req, res)=>{
                 transaction: t
             })
         }
-        const newData = await loadImage(req.files, data); //Cargo imagenes a Cloudinary
+
+        const images = await loadImage(req.files); //Cargo imagenes a Cloudinary
+        const newData = {...data, image: images};
         const newProduct = await ProductNutrifit.create(newData, {
             transaction: t
         }); // Instancio el producto en la bd;
@@ -23,10 +27,13 @@ const postNutrifit = async (req, res)=>{
         await newProduct.setProductType(type, {
             transaction: t
         });
+        console.log("esperando confirmación..")
         await t.commit(); // Confirmar la transacción
+        console.log("Producto de Nutrifit agregado con éxito");
         res.send("Producto de Nutrifit agregado con éxito");
     } catch (error) {
         await t.rollback(); // Deshacer cambios si hubo un error
+        console.log(error);
         res.status(400).send(error.message);
     }
 }

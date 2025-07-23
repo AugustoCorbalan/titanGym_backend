@@ -6,7 +6,9 @@ import getAllNutrifit from './controllers/productsControllers/getAllNutrifit.js'
 import postIndumentary from './controllers/productsControllers/postIndumentary.js';
 import postNutrifit from './controllers/productsControllers/postNutrifit.js';
 import putIndumentary from "./controllers/productsControllers/putIndumentary.js";
+import putNutrifit from "./controllers/productsControllers/putNutrifit.js";
 import deleteIndumentary from "./controllers/productsControllers/deleteIndumentary.js";
+import deleteNutrifit from "./controllers/productsControllers/deleteNutrifit.js";
 
 const router = Router();
 
@@ -16,6 +18,8 @@ router.get('/allNutrifit', (req, res)=> getAllNutrifit(req, res));
 router.post('/indumentary', (req, res)=> postIndumentary(req, res));
 router.post('/nutrifit', (req, res)=> postNutrifit(req, res));
 router.put('/putIndumentary', verifyToken, (req, res)=> putIndumentary(req, res));
+router.put('/putNutrifit', verifyToken, (req, res)=> putNutrifit(req, res));
 router.delete('/deleteIndumentary', verifyToken, (req, res)=> deleteIndumentary(req, res));
+router.delete('/deleteNutrifit', verifyToken, (req, res)=> deleteNutrifit(req, res));
 
 export default router; 

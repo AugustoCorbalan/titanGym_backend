@@ -1,7 +1,7 @@
-import { ProductIndumentary, Buy, Debt, Payment} from "../../../../../database/models/index.js";
+import { ProductIndumentary, ProductNutrifit, Buy, Debt, Payment} from "../../../../../database/models/index.js";
 
 export const handlerDbBuyIndumentary = async (data, amount)=>{
-    const { google_id, id_product, size, type_product } = data;
+    const { google_id, id_product } = data;
     const accountDate = new Date().toISOString().split('T')[0];
     const product = await ProductIndumentary.findByPk(id_product);
 
@@ -15,7 +15,27 @@ export const handlerDbBuyIndumentary = async (data, amount)=>{
     try {
         const accountBuy = await Buy.create(dataBuy);
         accountBuy.addProductIndumentary(product);
-        console.log("Producto cargadOOOOOOOOOOOOOOO OO")
+    } catch (error) {
+        console.log("Error al instanciar la compra en la base de datos.");
+        console.log(error);
+    }
+
+}
+
+export const handlerDbBuyNutrifit = async (data, amount)=>{
+    const { google_id, id_product } = data;
+    const accountDate = new Date().toISOString().split('T')[0];
+    const product = await ProductNutrifit.findByPk(id_product);
+
+    const dataBuy = {
+        amount,
+        buyDate: accountDate,
+        cant: 1, 
+        userId: (google_id == '')? null : google_id,
+    }
+    try {
+        const accountBuy = await Buy.create(dataBuy);
+        accountBuy.addProductNutrifit(product);
     } catch (error) {
         console.log("Error al instanciar la compra en la base de datos.");
         console.log(error);
