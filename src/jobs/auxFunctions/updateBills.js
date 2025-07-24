@@ -80,6 +80,11 @@ export const generateBills = async ()=>{
             if(generate){
                 generateDebt(user.googleId);
                 console.log("Se genero la factura con éxito");
+                // Creo la notificacion para el usuario
+                await PendingNotification.create({
+                        userId: user.googleId,
+                        typeNotification: 'Nueva_factura',
+                    })
             }
         }
         console.log("Finalizó el trabajo de generación de nuevas facturas");
