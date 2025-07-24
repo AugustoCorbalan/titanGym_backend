@@ -1,6 +1,8 @@
 import sequelize from "../../db.js";
 import { DataTypes } from 'sequelize';
 
+const SIZE_ENUM = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'Unico'];
+
 const ProductIndumentary = sequelize.define('ProductIndumentary', {
   id: {
     type: DataTypes.INTEGER,
@@ -31,7 +33,7 @@ const ProductIndumentary = sequelize.define('ProductIndumentary', {
     defaultValue: 'Unisex'
   },
   sizes: {
-    type: DataTypes.ARRAY(DataTypes.ENUM('XS', 'S', 'M', 'L', 'XL', 'XXL', 'Unico')),
+    type: DataTypes.ARRAY(DataTypes.ENUM(...SIZE_ENUM)),
     allowNull: false
   },
   images: {

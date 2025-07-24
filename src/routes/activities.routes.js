@@ -10,7 +10,7 @@ const router = Router();
 
 router.get('/', (req, res)=> getActivity(req, res));
 router.get('/allActivities', (req, res)=> getAllActivities(req, res));
-router.post('/', (req, res)=> postActivity(req, res));
+router.post('/', verifyToken, (req, res)=> postActivity(req, res));
 router.delete('/deleteActivity', verifyToken, (req, res)=> deleteActivity(req, res));
 router.put('/updateActivity', verifyToken, (req, res)=> putActivity(req, res));
 

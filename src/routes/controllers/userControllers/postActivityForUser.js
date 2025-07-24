@@ -27,21 +27,38 @@ const postActivityForUser = async (req, res)=>{
         await 
         // Asociar la actividad al usuario
         await user.addActivity(activity, {transaction: t});
-        //Asocio una membresía al usuario, con la nueva Actividad
-        const today = new Date();
-        // Obtener el día del mes
-        const numberToday = today.getDate();
-        await Membership.create({
-          userId, 
-          activityId: activity.id,
-          payDay: numberToday,
-          startDate: today
-        }, {transaction: t});
-        //Creo la primera deuda (Factura);
-        const debtDate = await debtCalculator(userId, t); //Calcula el monto a pagar, día de pago;
-        if (!debtDate) throw new Error("Error al calcular la deuda.");
-        console.log("debtDate", debtDate)
-        await Debt.create(debtDate, {transaction: t});
+        // Verifico si el usuario tiene membresías previas.-------------------------
+        const prevMemberships = await Membership.findAll({
+          where: {
+            userId: userId
+          }
+        })
+        if(prevMemberships){
+          // Seteo el mismo periodo y el mismo dia de pago que la membresía anterior.
+          // Y NO genero la factura (Debt) para este mes (Se arregla presencialmente el periodo corriente);
+          await Membership.create({
+            userId, 
+            activityId: activity.id,
+            payDay: prevMemberships[0].payDay,
+            startDate: prevMemberships[0].startDate
+          }, {transaction: t});
+
+        }else{
+          //Asocio una membresía al usuario, con la nueva Actividad
+          const today = new Date();
+          // Obtener el día del mes
+          const numberToday = today.getDate();
+          await Membership.create({
+            userId, 
+            activityId: activity.id,
+            payDay: numberToday,
+            startDate: today
+          }, {transaction: t});
+          //Creo la primera deuda (Factura);
+          const debtDate = await debtCalculator(userId, t); //Calcula el monto a pagar, día de pago;
+          if (!debtDate) throw new Error("Error al calcular la deuda.");
+          await Debt.create(debtDate, {transaction: t});
+        }
         await t.commit(); // Confirmar la transacción
         res.status(200).send("Exito");
       } catch (error) {
