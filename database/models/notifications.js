@@ -1,6 +1,8 @@
 import sequelize from "../db.js";
 import { DataTypes } from 'sequelize';
 
+const TYPE_NOTIFICATION = ['Venc._factura', 'Ultimo_dia_venc._fact.', 'Nueva_factura', 'Cumpleaños'];
+
 //Notificaciones a usuarios
 const Notifications = sequelize.define('Notifications', {
     id:{
@@ -10,7 +12,7 @@ const Notifications = sequelize.define('Notifications', {
         allowNull: false
     },
     typeNotification:{
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(TYPE_NOTIFICATION),
         allowNull: false
     },
     textNotification: {

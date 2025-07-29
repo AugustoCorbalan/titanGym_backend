@@ -33,7 +33,7 @@ const postActivityForUser = async (req, res)=>{
             userId: userId
           }
         })
-        if(prevMemberships){
+        if(prevMemberships.length>0){
           // Seteo el mismo periodo y el mismo dia de pago que la membresía anterior.
           // Y NO genero la factura (Debt) para este mes (Se arregla presencialmente el periodo corriente);
           await Membership.create({
@@ -63,6 +63,7 @@ const postActivityForUser = async (req, res)=>{
         res.status(200).send("Exito");
       } catch (error) {
         await t.rollback(); // Deshacer cambios si hubo un error
+        console.log(error);
         res.status(400).send(error.message);
       }
 }
