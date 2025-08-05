@@ -8,6 +8,7 @@ import setUserAsAdmin from "./controllers/userControllers/setUserAsAdmin.js";
 import getAllUsersCompletedInfo from "./controllers/userControllers/getAllUsersCompletedInfo.js";
 import { setTokenFCM } from "./controllers/userControllers/setTokenFCM.js";
 import { setBirthday } from "./controllers/userControllers/setBirthday.js";
+import { putUser } from "./controllers/userControllers/putUser.js";
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.get('/allUsers', (req, res)=> getAllUsers(req, res));
 router.get('/getAllUsersCompletedInfo', verifyToken, (req, res)=> getAllUsersCompletedInfo(req, res));
 router.post('/', (req, res)=> postUser(req, res));
 router.post('/postActivityForUser', (req, res)=> postActivityForUser(req, res));
+router.put('/', verifyToken, (req, res)=> putUser(req, res));
 router.put('/setUserAsAdmin', (req, res)=> setUserAsAdmin(req, res));
 router.put('/tokenFCM', verifyToken, (req, res)=> setTokenFCM(req, res));
 router.put('/setBirthday', verifyToken, (req, res)=> setBirthday(req, res));

@@ -1,6 +1,8 @@
 import sequelize from "../db.js";
 import { DataTypes } from 'sequelize';
 
+const daysWeek = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+
 const Activity = sequelize.define('Activity', {
   id: {
     type: DataTypes.INTEGER,
@@ -32,6 +34,10 @@ const Activity = sequelize.define('Activity', {
   },
   endHour: {
     type: DataTypes.TIME,
+    allowNull: false
+  },
+  days: {
+    type: DataTypes.ARRAY(DataTypes.ENUM(...daysWeek)),
     allowNull: false
   },
   icon: {
