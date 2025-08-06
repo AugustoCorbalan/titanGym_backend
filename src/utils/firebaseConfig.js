@@ -1,5 +1,6 @@
 import admin from 'firebase-admin';
-import serviceAccount from '../../gimnasio-titan-firebase-adminsdk-fbsvc-9f24960c6f.json' assert {type: "json"};
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_CREDENTIALS);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
