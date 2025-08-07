@@ -1,7 +1,7 @@
 import sequelize from "../db.js";
 import { DataTypes } from 'sequelize';
 
-const daysWeek = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+const daysWeek = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
 
 const Activity = sequelize.define('Activity', {
   id: {
