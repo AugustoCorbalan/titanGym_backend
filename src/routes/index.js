@@ -9,6 +9,7 @@ import buyRouth from './buys.routes.js';
 import paymentRouth from './payment.routes.js';
 import mercadopagoRouth from './mercadopago.routes.js';
 import cronjobs from './cronjobs.routes.js';
+import notificationsRouth from './notifications.routes.js';
 
 const router = Router();
 
@@ -22,6 +23,6 @@ router.use('/buys', buyRouth);
 router.use('/payments', paymentRouth);
 router.use('/mercadopago', mercadopagoRouth);
 router.use('/cronJobs', cronjobs);
-
+router.use('/notifications', notificationsRouth);
 
 export default router;
