@@ -1,7 +1,7 @@
 import app from './app.js';
 import sequelize from '../database/db.js';
 import dotenv from 'dotenv';
-import { startBillingJobs, startNotificationsJobs } from './jobs/billingJobs.js';
+// import { startBillingJobs, startNotificationsJobs } from './jobs/billingJobs.js';
 
 dotenv.config();
 
@@ -10,10 +10,11 @@ async function main (){
     try {
         await sequelize.sync({force: false});
 
-        // Iniciar tareas cron:
-        startBillingJobs(); //Tareas de actualización de facturas.
-        startNotificationsJobs(); //Tareas de notificación a usuarios.
-        
+        //---------------------------Comentadas porque por ahora se hace por peticion http de cronjobs.org --------------------------------------
+        // Iniciar tareas cron: 
+        // startBillingJobs(); //Tareas de actualización de facturas.
+        // startNotificationsJobs(); //Tareas de notificación a usuarios.
+        //---------------------------------------------------------------------------------------------------------------------------------------
         // Levantar el servidor:
         app.listen(PORT);
 
