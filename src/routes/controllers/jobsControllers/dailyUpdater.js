@@ -8,7 +8,7 @@ export const dailyUpdater = async (req, res)=>{
         await updateBills();
         await generateBills();
         console.log("Tareas de actualización diaria realizada con éxito");
-        res.status(200);
+        res.status(200).send("Tarea de actualización terminada con éxito");
     } catch (error) {
         console.log("Error en trabajos de actualización diaria");
         console.error(error);
