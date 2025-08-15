@@ -8,7 +8,7 @@ dotenv.config();
 async function main (){
     const {PORT} = process.env;
     try {
-        await sequelize.sync({force: false});
+        await sequelize.sync({force: true});
 
         //---------------------------Comentadas porque por ahora se hace por peticion http de cronjobs.org --------------------------------------
         // Iniciar tareas cron: 
