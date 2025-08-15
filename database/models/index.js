@@ -8,7 +8,7 @@ import Payment from './payment.js';
 import Debt from './debt.js';
 import Buy from './buy.js';
 import PendingNotification from './pendingNotification.js';
-import Notifications from './notifications.js';
+import Notification from './notification.js';
 // Importaciones de modelos de productos
 import ProductIndumentary from './products/productIndumentary.js';
 import IndumentaryType from './products/indumentaryType.js';
@@ -76,7 +76,7 @@ NutrifitType.hasMany(ProductNutrifit, { foreignKey: 'productTypeId', as: 'produc
 ProductNutrifit.belongsTo(NutrifitType, { foreignKey: 'productTypeId', as: 'productType' });
 
 //Usuario - Notificaciones
-User.belongsToMany(Notifications, { through: 'UserNotifications' });
-Notifications.belongsToMany(User, { through: 'UserNotifications' });
+User.belongsToMany(Notification, { through: 'UserNotifications' });
+Notification.belongsToMany(User, { through: 'UserNotifications' });
 
-export { sequelize, User, Activity, Membership, Payment, Debt, Buy, ProductIndumentary, IndumentaryType, NutrifitType, ProductNutrifit, PendingNotification, Notifications};
+export { sequelize, User, Activity, Membership, Payment, Debt, Buy, ProductIndumentary, IndumentaryType, NutrifitType, ProductNutrifit, PendingNotification, Notification};

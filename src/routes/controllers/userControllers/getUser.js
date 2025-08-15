@@ -1,4 +1,4 @@
-import {Activity, Notifications} from '../../../../database/models/index.js';
+import {Activity} from '../../../../database/models/index.js';
 import {User} from '../../../../database/models/index.js';
 
 const getUser = async (req, res)=>{

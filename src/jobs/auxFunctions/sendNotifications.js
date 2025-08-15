@@ -1,5 +1,5 @@
 import admin from '../../utils/firebaseConfig.js'; // configuración de Firebase
-import { PendingNotification, User, Notifications } from '../../../database/models/index.js';
+import { PendingNotification, User, Notification } from '../../../database/models/index.js';
 import { Op } from 'sequelize';
 
 export const sendPendingNotifications = async () => {
@@ -66,7 +66,7 @@ const sendNotifications_vencFactura = async(notif_data)=>{
         const response = await admin.messaging().send(mensaje);
         console.log(`Notificación enviada`, response);
         //Guardo la notificación en mi base de datos.
-        const newNotification = await Notifications.create({
+        const newNotification = await Notification.create({
             typeNotification: notif_data.typeNotification,
             textNotification: handlerTextMessage(notif_data.typeNotification),
         });
@@ -159,7 +159,7 @@ export const sendNotifications_cumpleaños = async (notif_data) => {
         console.log(`Notificación enviada a ${user.name}`);
 
         // Registrar como notificación enviada
-        await Notifications.create({
+        await Notification.create({
           userId: user.googleId,
           typeNotification: 'Cumpleaños',
           textNotification: JSON.stringify(message.notification) // Guardar solo el texto
@@ -179,3 +179,43 @@ export const sendNotifications_cumpleaños = async (notif_data) => {
     console.error("Error en sendNotifications_cumpleaños:", error);
   }
 };
+
+//-------------------------------------------------------------------------------------------------------------------
+export const sendNotifications_push = async (notif_data, users_data) => {
+  try {
+    for(const user of users_data){
+      if ((!user || !user.tokenFCM)) {
+        console.log("No se pudo notificar al usuario porque no tiene tokenFCM")
+        console.error(`Usuario sin tokenFCM, ID: ${user.googleId}`);
+      }
+        const mensaje = {
+            notification: {
+                title: notif_data.titleNotification,
+                body: notif_data.textNotification,
+            },
+            token: user.tokenFCM,
+            android: {
+                notification: {
+                icon: `${process.env.BASE_URL_FRONTEND}/favicon_background.ico`,  // <- URL del logo
+                },
+            },
+            webpush: {
+                notification: {
+                icon: `${process.env.BASE_URL_FRONTEND}/favicon_background.ico`,  // <- Logo también para navegador
+                badge: '',   // (opcional) ícono pequeño
+                },
+            }
+        };
+  
+      try {
+        const response = await admin.messaging().send(mensaje);
+        console.log(`Notificación enviada al usuario ${user.googleId}`, response);
+      } catch (error) {
+        console.error(`Error al enviar notificación ID:${notif_data.id}, usuarioID: ${user.googleId}`, error);
+      }
+
+    }
+  } catch (error) {
+      console.error('Error al enviar notificaciones push:', error);
+  }  
+}

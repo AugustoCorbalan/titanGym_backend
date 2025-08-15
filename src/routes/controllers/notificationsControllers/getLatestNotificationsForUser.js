@@ -1,10 +1,10 @@
-import {Notifications} from '../../../../database/models/index.js';
+import {Notification} from '../../../../database/models/index.js';
 import {User} from '../../../../database/models/index.js';
 
 const getLatestNotificationsForUser = async (req, res)=>{
     try {
         const googleId = req.user.id;
-        const latestNotifications = await Notifications.findAll({
+        const latestNotifications = await Notification.findAll({
             include: [
                 {
                 model: User,
