@@ -1,5 +1,6 @@
 import {Notification} from '../../../../database/models/index.js';
 import {User} from '../../../../database/models/index.js';
+import { col } from "sequelize";
 
 const getLatestNotificationsForUser = async (req, res)=>{
     try {
@@ -7,9 +8,9 @@ const getLatestNotificationsForUser = async (req, res)=>{
         const latestNotifications = await Notification.findAll({
             include: [
                 {
-                model: User,
-                where: { googleId }, // Filtramos por el usuario
-                through: { attributes: [] } // Ocultamos columnas de la tabla intermedia
+                    model: User,
+                    where: { googleId }, // Filtramos por el usuario
+                    through: { attributes: ['viewed'] }
                 }
             ],
             order: [['createdAt', 'DESC']], // Orden de más nuevas a más antiguas
