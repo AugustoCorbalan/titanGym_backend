@@ -25,6 +25,7 @@ const postNotification = async (req, res)=>{
                 distinct: true
             })
             await newNotification.addUsers(list_users, { transaction: t });
+            await newNotification.addActivity(data.groups, { transaction: t });
             console.log("Notificaciones guardadas con éxito");
             //Envío las notificaciones a los usuarios:
             try {

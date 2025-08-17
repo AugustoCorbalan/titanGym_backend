@@ -1,6 +1,5 @@
 import {Notification} from '../../../../database/models/index.js';
 import {User} from '../../../../database/models/index.js';
-import { col } from "sequelize";
 
 const getLatestNotificationsForUser = async (req, res)=>{
     try {

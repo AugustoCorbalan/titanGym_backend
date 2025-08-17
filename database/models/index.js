@@ -80,4 +80,8 @@ ProductNutrifit.belongsTo(NutrifitType, { foreignKey: 'productTypeId', as: 'prod
 User.belongsToMany(Notification, { through: UserNotification, foreignKey: 'googleId' });
 Notification.belongsToMany(User, { through: UserNotification, foreignKey: 'notificationId' });
 
+//Actividad - Notificaciones
+Activity.belongsToMany(Notification, { through: 'ActivityNotification', foreignKey: 'activityId' });
+Notification.belongsToMany(Activity, { through: 'ActivityNotification', foreignKey: 'notificationId' });
+
 export { sequelize, User, Activity, Membership, Payment, Debt, Buy, ProductIndumentary, IndumentaryType, NutrifitType, ProductNutrifit, PendingNotification, Notification, UserNotification};
